@@ -109,12 +109,15 @@ long  dato,cuenta_colores;
 long  valorLetra;
 int   valor;    //con INT SALE MAS COLOR original CHAR
 int r,v,a,c;
-r = 0; v= 0; a= 0; c= 0;
+r = 0; 
+v = 0; 
+a = 0; 
+c = 0;
 valor = 0;
 valorLetra = 0;
 cuenta_colores = 0;
-contador  =  0;
-dato      =  0;
+contador =  0;
+dato =  0;
  
     asm{
       mov ah,0
@@ -125,7 +128,7 @@ dato      =  0;
  
     fseek(archivo,54L,SEEK_SET); //--- numero colores bmp ( Cargo Paleta Colores )
     do
-       {
+    {
  
         outportb(0x3c8,cuenta_colores);
         fread(&valor,1,1,archivo);
@@ -153,18 +156,18 @@ dato      =  0;
          outportb(0x3c9,r);
          outportb(0x3c9,v);
          outportb(0x3c9,a);
-        }
- 
+    }
     while(cuenta_colores <= 255);
+
     getch();
  
     do
-        {
+    {
         fseek(archivo,1078L+contador,SEEK_SET);   //Aquí vuelvo a video memoria. Lo que quiero hacer es guardar esos datos en un array de 63779
         fread(&dato,1,1,archivo);                 //elementos y luego volcarlo a la video memoria, pero no se como hacerlo.
         pokeb(0xa000,contador,dato);              // Escribe en memoria de video
         contador = contador + 1 ;
-        }
+    }
     while (contador <=63779);
  
     getch();
