@@ -16,7 +16,7 @@ void lee_datos(long lugar);
 unsigned char *vga = (unsigned char *) MK_FP(0xA000,0); //defino puntero FAR ( con segmento y desplazamiento ) 
                                                         //que apunta a la MEMORIA DE VIDEO 0xA000
 
-FILE *archivo;
+FILE *archivo = NULL;
 void main(){
 
 	//La llamada la hago varias veces para comprobar la velocidad
